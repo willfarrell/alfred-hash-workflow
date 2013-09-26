@@ -19,6 +19,7 @@ Run the [Alleyoop Workflow](http://www.alfredforum.com/topic/1582-alleyoop-updat
 Hashes strings with algorithms like md5, sha1, sha512, and many others. 
 
 ![alt text][hash]
+![alt text][sha]
 
 ## Commands
 - `hash {query}` - hash query over all supported algorithms
@@ -30,3 +31,4 @@ Press enter to save hash to clipboard.
 - [@willfarrell](https://github.com/willfarrell)
 
 [hash]: ./screenshots/hash.png "Hash"
+[sha]: ./screenshots/sha.png "SHA"
