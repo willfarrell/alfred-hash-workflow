@@ -26,7 +26,8 @@ if (strpos($query, " ") !== false) {
 	
 }
 
-if ( count( $w->results() ) == 0 ) {	foreach($algos as $algo) {
+if ( count( $w->results() ) == 0 ) {
+	foreach($algos as $algo) {
 		$hash = hash($algo, $query);
 		$w->result( "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes' );
 	}
