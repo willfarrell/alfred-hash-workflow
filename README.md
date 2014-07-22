@@ -1,4 +1,4 @@
-Hash ([Download v1.0](https://raw.github.com/willfarrell/alfred-hash-workflow/master/Hash.alfredworkflow))
+Hash ([Download v1.1](https://raw.github.com/willfarrell/alfred-hash-workflow/master/Hash.alfredworkflow))
 =====================
 
 hashing Strings.
@@ -24,6 +24,7 @@ Hashes strings with algorithms like md5, sha1, sha512, and many others.
 ## Commands
 - `hash {query}` - hash query over all supported algorithms
 - `hash {algorithm} {query}` - hash query over all selected algorithm
+- `{md5,sha1,sha512} {query} - hash query over all selected algorithm
 
 Press enter to save hash to clipboard.
 
