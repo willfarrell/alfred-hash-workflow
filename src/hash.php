@@ -15,7 +15,7 @@ if (strpos($query, " ") !== false) {
 	$algo_q = array_shift($parts);
 	$string = implode($parts);
 	if($algo_q == "bcrypt"){
-		$hash = password_hash($string, PASSWORD_DEFAULT);
+		$hash = password_hash($string, PASSWORD_BCRYPT);
 		$w->result("bcrypt", $hash, "bcrypt", $hash, 'icon.png', 'yes');
 	} else {
 		foreach($algos as $algo) {
