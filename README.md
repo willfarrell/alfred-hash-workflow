@@ -1,4 +1,4 @@
-Hash ([Download v1.1](https://raw.github.com/willfarrell/alfred-hash-workflow/master/Hash.alfredworkflow))
+Hash ([Download v1.3](https://raw.github.com/willfarrell/alfred-hash-workflow/master/Hash.alfredworkflow))
 =====================
 
 hashing Strings.

@@ -1,5 +1,5 @@
 <?php
-
+$query = 'tetst';
 // ****************
 error_reporting(0);
 require_once('workflows.php');
@@ -7,18 +7,25 @@ require_once('workflows.php');
 $w = new Workflows();
 if (!isset($query)) { $query = "{query}"; }
 
-$algos = hash_algos();
+$password_algos = [PASSWORD_DEFAULT, PASSWORD_BCRYPT]; // ** Users can add more algos here
+$algos = array_merge(hash_algos(), $password_algos);
 
 // has algo set
 if (strpos($query, " ") !== false) {
 	$parts = explode(" ", $query);
 	$algo_q = array_shift($parts);
-	$string = implode($parts);
+	$string = implode(" ", $parts);
 	
 	foreach($algos as $algo) {
 		$pos = strpos($algo, $algo_q);
 		if ($pos !== false && $pos == 0) {
-			$hash = hash($algo, $string);
+			
+			if (in_array($algo, $password_algos)) {
+				$hash = password_hash($query, $algo);
+			} else {
+				$hash = hash($algo, $string);
+			}
+			
 			//echo "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes\n';
 			$w->result( "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes' );
 		}
@@ -28,7 +35,11 @@ if (strpos($query, " ") !== false) {
 
 if ( count( $w->results() ) == 0 ) {
 	foreach($algos as $algo) {
-		$hash = hash($algo, $query);
+		if (in_array($algo, $password_algos)) {
+			$hash = password_hash($query, $algo);
+		} else {
+			$hash = hash($algo, $string);
+		}
 		$w->result( "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes' );
 	}
 	//$w->result( 'hash', $query, 'None', $query, 'icon.png', 'yes' );
