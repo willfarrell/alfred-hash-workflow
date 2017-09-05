@@ -45,6 +45,6 @@ if ( count( $w->results() ) == 0 ) {
 	//$w->result( 'hash', $query, 'None', $query, 'icon.png', 'yes' );
 }
 
-//echo $w->toxml();
+echo $w->toxml();
 // ****************
 ?>
