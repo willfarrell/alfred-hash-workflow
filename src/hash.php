@@ -1,5 +1,5 @@
 <?php
-$query = 'tetst';
+//$query = 'PASSWORD_DEFAULT purple monkey dishwasher';
 // ****************
 error_reporting(0);
 require_once('workflows.php');
@@ -21,7 +21,7 @@ if (strpos($query, " ") !== false) {
 		if ($pos !== false && $pos == 0) {
 			
 			if (in_array($algo, $password_algos)) {
-				$hash = password_hash($query, $algo);
+				$hash = password_hash($string, $algo);
 			} else {
 				$hash = hash($algo, $string);
 			}
@@ -38,13 +38,13 @@ if ( count( $w->results() ) == 0 ) {
 		if (in_array($algo, $password_algos)) {
 			$hash = password_hash($query, $algo);
 		} else {
-			$hash = hash($algo, $string);
+			$hash = hash($algo, $query);
 		}
 		$w->result( "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes' );
 	}
 	//$w->result( 'hash', $query, 'None', $query, 'icon.png', 'yes' );
 }
 
-echo $w->toxml();
+//echo $w->toxml();
 // ****************
 ?>
