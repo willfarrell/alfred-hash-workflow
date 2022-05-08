@@ -9,7 +9,8 @@ if (!isset($query)) { $query = "{query}"; }
 
 $password_algos = [PASSWORD_DEFAULT, PASSWORD_BCRYPT]; // ** Users can add more algos here
 $algos = array_merge(hash_algos(), $password_algos);
-
+// add base64_encode and base64_decode
+array_push($algos, 'base64_encode', 'base64_decode');
 // has algo set
 if (strpos($query, " ") !== false) {
 	$parts = explode(" ", $query);
@@ -20,7 +21,11 @@ if (strpos($query, " ") !== false) {
 		$pos = strpos($algo, $algo_q);
 		if ($pos !== false && $pos == 0) {
 			
-			if (in_array($algo, $password_algos)) {
+			if($algo == 'base64_encode'){
+				$hash = base64_encode($string);
+			} elseif($algo == 'base64_decode'){
+				$hash = base64_decode($string);
+			} elseif (in_array($algo, $password_algos)) {
 				$hash = password_hash($string, $algo);
 			} else {
 				$hash = hash($algo, $string);
@@ -35,10 +40,14 @@ if (strpos($query, " ") !== false) {
 
 if ( count( $w->results() ) == 0 ) {
 	foreach($algos as $algo) {
-		if (in_array($algo, $password_algos)) {
-			$hash = password_hash($query, $algo);
+		if($algo == 'base64_encode'){
+			$hash = base64_encode($string);
+		} elseif($algo == 'base64_decode'){
+			$hash = base64_decode($string);
+		} elseif (in_array($algo, $password_algos)) {
+			$hash = password_hash($string, $algo);
 		} else {
-			$hash = hash($algo, $query);
+			$hash = hash($algo, $string);
 		}
 		$w->result( "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes' );
 	}
