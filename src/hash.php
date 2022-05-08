@@ -41,13 +41,13 @@ if (strpos($query, " ") !== false) {
 if ( count( $w->results() ) == 0 ) {
 	foreach($algos as $algo) {
 		if($algo == 'base64_encode'){
-			$hash = base64_encode($string);
+			$hash = base64_encode($query);
 		} elseif($algo == 'base64_decode'){
-			$hash = base64_decode($string);
+			$hash = base64_decode($query);
 		} elseif (in_array($algo, $password_algos)) {
-			$hash = password_hash($string, $algo);
+			$hash = password_hash($query, $algo);
 		} else {
-			$hash = hash($algo, $string);
+			$hash = hash($algo, $query);
 		}
 		$w->result( "hash-$algo", $hash, "$algo", $hash, 'icon.png', 'yes' );
 	}
